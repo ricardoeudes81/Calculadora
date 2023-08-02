@@ -12,7 +12,7 @@ type
   TTipoOperacao = (tpoNada, tpoSoma, tpoSubtracao, tpoMultiplicacao, tpoDivisao);
 
 
-  TOperacao = class(TObject)
+  TOperacao = class abstract
     function Calculo(): Double; virtual; abstract;
   end;
 

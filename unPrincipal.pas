@@ -84,6 +84,7 @@ type
     procedure CalcularImpostoA();
     procedure CalcularImpostoB();
     procedure CalcularImpostoC();
+    function CalcularImpsotoGenerico(Imposto: TCalculo): string;
 
     property Erro: Boolean read FErro;
 
@@ -497,7 +498,7 @@ var
 begin
   Imposto := TImpostoA.Create;
   try
-    edtImpostoA.Text := FormatFloat(FORMATO_VALOR, Imposto.CalculaImposto(StrToFloatDef(edtVisor.Text, 0)));
+    edtImpostoA.Text := CalcularImpsotoGenerico(Imposto);
   finally
     Imposto.Free;
   end;
@@ -509,7 +510,7 @@ var
 begin
   Imposto := TImpostoB.Create;
   try
-    edtImpostoB.Text := FormatFloat(FORMATO_VALOR, Imposto.CalculaImposto(StrToFloatDef(edtVisor.Text, 0)));
+    edtImpostoB.Text := CalcularImpsotoGenerico(Imposto);
   finally
     Imposto.Free;
   end;
@@ -521,10 +522,15 @@ var
 begin
   Imposto := TImpostoC.Create;
   try
-    edtImpostoC.Text := FormatFloat(FORMATO_VALOR, Imposto.CalculaImposto(StrToFloatDef(edtVisor.Text, 0)));
+    edtImpostoC.Text := CalcularImpsotoGenerico(Imposto);
   finally
     Imposto.Free;
   end;
+end;
+
+function TfrmPrincipal.CalcularImpsotoGenerico(Imposto: TCalculo): string;
+begin
+  Result := FormatFloat(FORMATO_VALOR, Imposto.CalculaImposto(StrToFloatDef(edtVisor.Text, 0)));
 end;
 
 end.
